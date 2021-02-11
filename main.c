@@ -28,7 +28,7 @@ int main(void)
 
 	uint16_t sw2_value = 0;
 	uint16_t sw3_value = 0;
-	uint16_t time_delay = 6500;
+	uint32_t time_delay = 0;
 
 	while(1)
 	{
@@ -44,34 +44,58 @@ int main(void)
 		{
 			if(0 != sw3_value)
 			{
-				uint32_t time_delay = 6500000;
+				time_delay = 65000;
 
 				GPIOB->PCOR = 0x00400000;
 				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+
 				GPIOB->PSOR = 0x00400000;
 
 				GPIOB->PCOR = 0x00200000;
 				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+
 				GPIOB->PSOR = 0x00200000;
 
 				GPIOE->PCOR = 0x04000000;
 				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+
 				GPIOE->PSOR = 0x04000000;
 			}
 			if(0 == sw3_value)
 			{
-				uint32_t time_delay = 6500000/3;
+				time_delay = 65000/3;
 
 				GPIOB->PCOR = 0x00400000;
 				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+
 				GPIOB->PSOR = 0x00400000;
 
 				GPIOB->PCOR = 0x00200000;
 				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+
 				GPIOB->PSOR = 0x00200000;
 
 				GPIOE->PCOR = 0x04000000;
 				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+
 				GPIOE->PSOR = 0x04000000;
 			}
 		}
@@ -79,16 +103,24 @@ int main(void)
 		{
 			if(0 != sw3_value)
 			{
-				uint32_t time_delay = 6500000;
+				time_delay = 65000;
 				white_on();
 				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+
 				white_off();
 			}
 			if(0 == sw3_value)
 			{
-				uint32_t time_delay = 6500000*3;
+				time_delay = 65000/3;
 				white_on();
 				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+				delay(time_delay);
+
 				white_off();
 			}
 		}
