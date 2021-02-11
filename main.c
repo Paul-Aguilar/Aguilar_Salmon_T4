@@ -31,24 +31,70 @@ int main(void) {
 
 	while(1) {
 
-		sw2_value = GPIOA->PDIR;
+		sw2_value = GPIOC->PDIR;
+		sw3_value = GPIOA->PDIR;
 
 		uint16_t time_delay = 6500;
-		//encendemos LED rojo y despues lo apagamos
-		GPIOB->PCOR = 0x00400000;
-		GPIOB->PSOR = 0x00400000;
+
+		if (0 != sw2_value)
+		{
+			if(0 != sw3_value)
+			{
+				uint16_t time_delay = 6500;
+
+				GPIOB->PCOR = 0x00400000;
+				delay(time_delay);
+				GPIOB->PSOR = 0x00400000;
+
+				GPIOB->PCOR = 0x00200000;
+				delay(time_delay);
+				GPIOB->PSOR = 0x00200000;
+
+				GPIOE->PCOR = 0x04000000;
+				delay(time_delay);
+				GPIOE->PSOR = 0x04000000;
 
 
-		//encendemos LED azul y despues lo apagamos
-		GPIOB->PCOR = 0x00200000;
-		GPIOB->PSOR = 0x00200000;
+			}
+			if(0 == sw3_value)
+			{
+				uint16_t time_delay = 6500*3;
 
-		//encedemos LED verde y despues lo apagamos
-		GPIOE->PCOR = 0x04000000;
-		GPIOE->PSOR = 0x04000000;
+				GPIOB->PCOR = 0x00400000;
+				delay(time_delay);
+				GPIOB->PSOR = 0x00400000;
 
-		white_on();
-		white_off();
+				GPIOB->PCOR = 0x00200000;
+				delay(time_delay);
+				GPIOB->PSOR = 0x00200000;
+
+				GPIOE->PCOR = 0x04000000;
+				delay(time_delay);
+				GPIOE->PSOR = 0x04000000;
+			}
+
+		}
+		if (0 == sw2_value)
+		{
+			if(0 != sw3_value)
+			{
+				uint16_t time_delay = 6500;
+				white_on();
+				delay(time_delay);
+				white_off();
+			}
+			if(0 == sw3_value)
+			{
+				uint16_t time_delay = 6500*3;
+				white_on();
+				delay(time_delay);
+				white_off();
+			}
+		}
+
+
+
+
 		}
 	return 0 ;
 }
@@ -74,3 +120,22 @@ void delay(uint16_t time_delay)
 		__asm("nop");
 	}
 }
+
+
+
+
+//encendemos LED rojo y despues lo apagamos
+//GPIOB->PCOR = 0x00400000;
+//GPIOB->PSOR = 0x00400000;
+
+
+//encendemos LED azul y despues lo apagamos
+//GPIOB->PCOR = 0x00200000;
+//GPIOB->PSOR = 0x00200000;
+
+//encedemos LED verde y despues lo apagamos
+//GPIOE->PCOR = 0x04000000;
+//GPIOE->PSOR = 0x04000000;
+
+//white_on();
+//white_off();
